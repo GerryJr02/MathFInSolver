@@ -8,9 +8,9 @@ def parse_question(question):
 
 
 def print_equation_options(list_of_items, title):
-    print(f"We got {len(list_of_items)} {title.upper()} "
-          f"match{'es' if len(list_of_items) > 1 else ''}!")
-    print(f"\nChoose which {title.upper()} equation you would like to run:")
+    print(f"We got {len(list_of_items)} {title[0].upper()} "
+          f"match{'es' if len(list_of_items) > 1 else ''} {title[1]}!")
+    print(f"\nChoose which {title[0].upper()} equation you would like to run:")
     for i, item in enumerate(list_of_items):
         print(f"{i+1}. {item}")
     print("0: Continue")
@@ -51,11 +51,12 @@ def find_related_equations(question):
 
 
 def run_equation(equation_correlations):
-    cor_options = ["perfect", "ideal", "relevant", "unrelated"]  # Hard coded to ensure order
+    cor_options = [("perfect", "100-80%"), ("ideal", "80-50%"), ("relevant", "50-25%"),
+                   ("unrelated", "25-0%")]  # Hard coded to ensure order
 
     pick_eq = 0
     for option in cor_options:
-        correlation_mode = equation_correlations[option]
+        correlation_mode = equation_correlations[option[0]]
         if correlation_mode:
             print_equation_options(correlation_mode, option)
             pick_eq = int(input("\nEnter the desired equation (integer): "))

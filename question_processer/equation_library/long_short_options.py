@@ -176,7 +176,8 @@ def multiple_put_call_parity_inputs():
 def calculate_multiple_put_call_parity(stock_price, strike_prices, call_premiums, put_premiums,
                                        risk_free_rate, time_to_maturity, compounding):
     """
-    Check for arbitrage opportunities based on the put-call parity considering different compounding options.
+    Check for arbitrage opportunities based on the put-call parity considering different
+    compounding options.
 
     Parameters:
     Same as before, with the addition of:
@@ -302,11 +303,8 @@ def run_implied_risk_free_rate_input():
 if "__main__" == __name__:
     pass
 
-    # run_general_recommendations()
-
-    # run_single_put_call_parity()
-
-    # run_multiple_put_call_parity()
-
-    # run_implied_risk_free_rate_input()
-
+    # Functions passed on:
+    #   run_general_recommendations()
+    #   run_single_put_call_parity()
+    #   run_multiple_put_call_parity()
+    #   run_implied_risk_free_rate_input()

@@ -43,6 +43,19 @@ equations_map = {
         "function": lib.run_multiple_put_call_parity,
         "description": "Finds and explains how to capture arbitrage when looking and comparing"
                        " multiple Put-Call options. Typically with a table"
+    },
+    "Central Limit Theorem": {
+        "keywords": ["randomly", "randomly", "randomly", "game", "play", "times"],
+        "function": lib.run_central_limit_thm,
+        "description": "Finds general statistics in a given game, and also determines the odds of"
+                       "going over or under a given target."
+    },
+    "Probability Transformed Normal": {
+        "keywords": ["normal", "distribution", "y", "probability", "variable", "a", "b"],
+        "function": lib.run_probability_transformed_normal,
+        "description": "Finds the probability of a normal distribution given a target. Here is a "
+                       "look on how it is done: P(Y > y_target) for Y = aX + b, "
+                       "where X ~ N(mu_X, sigma_X^2). "
     }
 }
 

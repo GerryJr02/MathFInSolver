@@ -56,6 +56,11 @@ equations_map = {
         "description": "Finds the probability of a normal distribution given a target. Here is a "
                        "look on how it is done: P(Y > y_target) for Y = aX + b, "
                        "where X ~ N(mu_X, sigma_X^2). "
+    },
+    "Taylor Time": {
+        "keywords": ["Taylor", "series", "around", "point"],
+        "function": lib.run_taylor_time,
+        "description": "Calculate the First, Second, or Third order of Taylor Series."
     }
 }
 

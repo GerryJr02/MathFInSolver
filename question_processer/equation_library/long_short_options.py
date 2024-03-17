@@ -37,13 +37,14 @@ def calculate_present_value(future_value, risk_free_rate, time_to_maturity, comp
 
     Parameters:
     future_value (float): The future sum of money.
-    risk_free_rate (float): The risk-free interest rate (as a decimal).
+    risk_free_rate (float): The risk-free interest rate (percent).
     time_to_maturity (float): Time until the future sum of money is received (in years).
     compounding (str): The compounding frequency ('continuous', 'annual', 'semi-annual', 'quarterly', 'monthly').
 
     Returns:
     float: The present value of the future sum.
     """
+    risk_free_rate = risk_free_rate / 100
 
     if compounding == 'Continuous':
         present_value = future_value * math.exp(-risk_free_rate * time_to_maturity)
@@ -161,12 +162,12 @@ def multiple_put_call_parity_inputs():
         call_premiums.append(float(input(f"Enter Call Price #{i}: ")))
         put_premiums.append(float(input(f"Enter Put Price #{i}: ")))
 
-    risk_free_rate = int(input('Enter risk free rate (percent): '))
+    risk_free_rate = float(input('Enter risk free rate (percent): '))
     if not risk_free_rate:
         time_to_maturity = 1
         compounding = 1
     else:
-        time_to_maturity = print("Enter years to maturity: ")
+        time_to_maturity = int(input("Enter years to maturity: "))
         compounding = get_compound()
 
     return (stock_price, strike_prices, call_premiums, put_premiums, risk_free_rate,
@@ -300,8 +301,72 @@ def run_implied_risk_free_rate_input():
     print(f"The Risk Free Rate: {r_percent:.3f}%")
 
 
+def portfolio_value_inputs():
+    options = []
+    stock_price = int(input("\nEnter the Stock Price: "))
+    size = int(input("Enter the number of options (integer): "))
+    for i in range(1, size + 1):
+        position = int(input(f"\nOption #{i}: Enter 1 for Long, 2 for Short: "))
+        position = "short" if position - 1 else "long"
+        stand = int(input(f"Option #{i}: Enter 1 for Call, 2 for Put: "))
+        stand = "put" if stand - 1 else "call"
+        strike_price = float(input(f"Option #{i}: Enter the Stock Price: "))
+        quantity = int(input(f"Option #{i}: Enter the quantity of this option (integer): "))
+        options.append({'type': stand, 'position': position, 'strike': strike_price,
+                        'quantity': quantity})
+    risk_free_rate = float(input('Enter risk free rate (percent): '))
+    periods = int(input("Enter years to maturity (integer): "))
+    compounding = get_compound()
+    return options, stock_price, risk_free_rate, periods, compounding
+
+
+
+def calculate_portfolio_value(options, stock_price, risk_free_rate, periods, compounding):
+    """
+    Calculate the net present value (NPV) of a portfolio of options,
+    accounting for interest rates and compounding.
+    """
+    NPV = 0
+
+    for option in options:
+        # Calculate the present value of the strike price for each option
+        PV_K = calculate_present_value(option['strike'], risk_free_rate, periods, compounding)
+
+        value_contribution = 0
+        if option['type'] == 'call':
+            # For call options, consider the present value of exercising the option
+            value_contribution = max(stock_price - PV_K, 0)
+        elif option['type'] == 'put':
+            # For put options, consider the present value of exercising the option
+            value_contribution = max(PV_K - stock_price, 0)
+
+        # Apply the position (long or short) and quantity
+        if option['position'] == 'long':
+            NPV += value_contribution * option['quantity']
+        elif option['position'] == 'short':
+            NPV -= value_contribution * option['quantity']
+
+    return NPV
+
+
+def run_portfolio_value():
+    print("Let's Calculate the Net Present Value of a Portfolio")
+    entry_values = portfolio_value_inputs()
+    result = calculate_portfolio_value(*entry_values)
+
+    print("\n\033[1mNet Present Value Calculated!\033[0m")
+    print("\nPortfolio:")
+    print(f"Current Stock Price: ${entry_values[1]}")
+    for option in entry_values[0]:
+        print(f"{option['position'].capitalize()} {option['quantity']} {option['type']} option with"
+              f" a strike price of ${option['strike']}")
+
+    print(f"\nThe Net Present Value is ${result:.3f}")
+
+
+
 if "__main__" == __name__:
-    pass
+    run_portfolio_value()
 
     # Functions passed on:
     #   run_general_recommendations()

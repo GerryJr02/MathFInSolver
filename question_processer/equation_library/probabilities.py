@@ -93,8 +93,8 @@ def calculate_probability_transformed_normal(mu_x, sigma_x, a, b, y_target):
     Returns:
     float: The probability of Y being greater than (or less than) y_target.
     """
-
-    # Transform the target value back to the equivalent value in terms of X
+    # TODO: Make Y = aX + b into the input section
+    # Transform the target value back to the equivalent value in terms of X aka Y = aX + b
     x_target = (y_target - b) / a
 
     # Adjust for the mean and standard deviation of X

@@ -44,6 +44,11 @@ equations_map = {
         "description": "Finds and explains how to capture arbitrage when looking and comparing"
                        " multiple Put-Call options. Typically with a table"
     },
+    "Portfolio Value from Options": {
+        "keywords": ["option", "strike", "stock", "long", "short", "put", "call"],
+        "function": lib.run_portfolio_value,
+        "description": "Finds the value of a portfolio given several options."
+    },
     "Central Limit Theorem": {
         "keywords": ["randomly", "randomly", "randomly", "game", "play", "times"],
         "function": lib.run_central_limit_thm,

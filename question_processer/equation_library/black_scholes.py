@@ -230,7 +230,7 @@ def calculate_black_scholes_call(stock_price, strike_price, time_to_maturity, ri
 
 
 def run_black_scholes_call():
-    print("Calculating European Put Value with Volatility")
+    print("Calculating European Call Value with Volatility")
     # Inputs Identical to put
     entry_values = black_scholes_put_inputs()
     result = calculate_black_scholes_call(*entry_values)

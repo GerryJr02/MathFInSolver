@@ -310,7 +310,7 @@ def portfolio_value_inputs():
         position = "short" if position - 1 else "long"
         stand = int(input(f"Option #{i}: Enter 1 for Call, 2 for Put: "))
         stand = "put" if stand - 1 else "call"
-        strike_price = float(input(f"Option #{i}: Enter the Stock Price: "))
+        strike_price = float(input(f"Option #{i}: Enter the Strike Price: "))
         quantity = int(input(f"Option #{i}: Enter the quantity of this option (integer): "))
         options.append({'type': stand, 'position': position, 'strike': strike_price,
                         'quantity': quantity})
@@ -366,10 +366,11 @@ def run_portfolio_value():
 
 
 if "__main__" == __name__:
-    run_portfolio_value()
+    pass
 
     # Functions passed on:
     #   run_general_recommendations()
     #   run_single_put_call_parity()
     #   run_multiple_put_call_parity()
     #   run_implied_risk_free_rate_input()
+    #   run_portfolio_value()

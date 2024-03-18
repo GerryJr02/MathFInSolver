@@ -1,0 +1,4 @@
+# External requirements: use <pip install -r requirements.txt>
+numpy
+scipy
+sympy

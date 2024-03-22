@@ -5,6 +5,7 @@ equations_map = {
     "Tote Betting Facility": {
         "keywords": ["horse", "racetrack", "guaranteed", "profit", "windows", "oa", "bet",
                      "facility", "no", "matter"],
+        "master words": ["tote", "facility"],
         "function": lib.get_odds,
         "description": "Finds the odds of each option that is bet upon while including room for "
                        "the manager to guarantee profit for themselves"
@@ -144,5 +145,8 @@ for keyword_list in equations_map.values():
 
 
 if __name__ == "__main__":
-    pass
+    print(f"There a total of {len(keywords)} equations we can run!")
+
+    # To run an equation, enter:
     # equations_map["Tote Betting"]["function"]()
+

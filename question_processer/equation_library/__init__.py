@@ -14,3 +14,6 @@ from .probabilities import run_central_limit_thm, run_probability_transformed_no
 from .taylor_problems import run_taylor_time
 from .tote_betting import get_odds
 
+
+from .quiz_1 import cashflow_inputs
+

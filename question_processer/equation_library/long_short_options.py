@@ -1,6 +1,16 @@
 # long_short_options.py
-
+import os
 import math
+
+# Get the current directory
+current_dir = os.path.basename(os.getcwd())
+
+# Check if the script is run from the "Math_Finance_Solver" directory aka main.py
+if current_dir == "Math_Finance_Solver":
+    import question_processer.equation_library._compound as comp_lib
+# Check to see if script is being run directly
+elif current_dir == "equation_library":
+    import _compound as comp_lib
 
 
 compounding_methods = {
@@ -167,7 +177,7 @@ def multiple_put_call_parity_inputs():
         time_to_maturity = 1
         compounding = 1
     else:
-        time_to_maturity = int(input("Enter years to maturity: "))
+        time_to_maturity = comp_lib.check_for_fraction(input("Enter years to maturity: "))
         compounding = get_compound()
 
     return (stock_price, strike_prices, call_premiums, put_premiums, risk_free_rate,
@@ -228,7 +238,7 @@ def run_multiple_put_call_parity():
     results_list = calculate_multiple_put_call_parity(*entry_values)
 
     print(f"\033[1mWe found {len(results_list)} result{'s' if len(results_list) else ''} with "
-          f"arbitrage value!\033[0")
+          f"arbitrage value!\033[0m")
 
     best_opportunity = 0
     opportunity_index = 0
@@ -366,11 +376,11 @@ def run_portfolio_value():
 
 
 if "__main__" == __name__:
-    pass
+    #   run_single_put_call_parity()
 
     # Functions passed on:
     #   run_general_recommendations()
     #   run_single_put_call_parity()
-    #   run_multiple_put_call_parity()
+    run_multiple_put_call_parity()
     #   run_implied_risk_free_rate_input()
     #   run_portfolio_value()

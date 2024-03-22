@@ -1,15 +1,8 @@
 import time
 
 
-#"    __  __       _   _       _ _____ _  _   ____    ",
-#"   |  \/  | __ _| |_| |__   / |___ /| || | | __ )   ",
-#"   | |\/| |/ _` | __| '_ \  | | |_ \| || |_|  _ \   ",
-#"   | |  | | (_| | |_| | | | | |___) |__   _| |_) |  ",
-#"   |_|  |_|\__,_|\__|_| |_| |_|____/   |_| |____/   "
-
 def print_intro():
     # ASCII art for "Math Finance"
-
     math_finance_ascii = [
         r"    __  __       _   _        _ _____ _  _   ____    ",
         r"   |  \/  | __ _| |_| |__    / |___ /| || | | __ )   ",
@@ -17,7 +10,7 @@ def print_intro():
         r"   | |  | | (_| | |_| | | |  | |___) |__   _| |_) |  ",
         r"   |_|  |_|\__,_|\__|_| |_|  |_|____/   |_| |____/   "
     ]
-    ascii_len = len(math_finance_ascii[0])
+    ascii_len = max([len(line) for line in math_finance_ascii])
     welcome_message = "Welcome to:"
     print(f"\033[1m{welcome_message:^{ascii_len}}\033[0m")  # Note: Python 3.8 for nested f-strings
 
@@ -29,6 +22,7 @@ def print_intro():
     print(f"\n\033[1m{'By: Gerardo Lopez Jr.':^{ascii_len}}\033[0m")
     input("\n\nPress Enter to Continue ...")
     print("\n" * 30)
+
 
 if __name__ == "__main__":
     print_intro()
